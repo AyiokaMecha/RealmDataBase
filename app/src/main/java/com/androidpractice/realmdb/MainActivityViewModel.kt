@@ -115,8 +115,8 @@ class MainActivityViewModel: ViewModel() {
     fun deleteCourse() {
         viewModelScope.launch {
             realm.write {
-                val course = courseDetails ?: return@write
-                val latestCourse = findLatest(course) ?: return@write
+                val course = courseDetails ?: return@write // if courseDetails is null the code exits the lambda using the return@write
+                val latestCourse = findLatest(course) ?: return@write  // find latest find me the latest entry with the id matching what I have given you
                 delete(latestCourse)
 
                 courseDetails = null
